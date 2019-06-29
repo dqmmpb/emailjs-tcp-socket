@@ -23,21 +23,21 @@
 
     if (typeof define === 'function' && define.amd) {
         // amd
-        define(['emailjs-tcp-socket-tls'], factory.bind(null, navigator));
+        define(['emailjs-tcp-socket-tls'], factory.bind(null, navigator, require('./emailjs-tcp-socket-tls'), null, null, require('socket.io-client')));
     } else if (typeof exports === 'object' && typeof navigator !== 'undefined') {
         if (process.versions.electron || process.versions.nw || process.versions['node-webkit']) {
             // common.js for electron
-            module.exports = factory(navigator, null, require('net'), require('tls'));
+            module.exports = factory(navigator, null, require('net'), require('tls'), require('socket.io-client'));
         } else {
             // common.js for browserify apps with native socket support
-            module.exports = factory(navigator, require('./emailjs-tcp-socket-tls'));
+            module.exports = factory(navigator, require('./emailjs-tcp-socket-tls'), null, null, require('socket.io-client'));
         }
     } else if (typeof exports === 'object') {
         // common.js for node.js
-        module.exports = factory(null, null, require('net'), require('tls'));
+        module.exports = factory(null, null, require('net'), require('tls'), require('socket.io-client'));
     } else {
         // global browser import
-        navigator.TCPSocket = factory(navigator, root['emailjs-tcp-socket-tls']);
+        navigator.TCPSocket = factory(navigator, root['emailjs-tcp-socket-tls'], null, null, require('socket.io-client'));
     }
 })(this, function(root, TLS, net, tls) {
     'use strict';

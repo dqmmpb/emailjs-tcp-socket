@@ -3,3 +3,6 @@ npm-debug.log
 .DS_Store
 lib
 runtime.json
+
+.idea
+package-lock.json

@@ -24,7 +24,8 @@
   },
   "homepage": "https://github.com/emailjs/emailjs-tcp-socket",
   "dependencies": {
-    "node-forge": "^0.6.11"
+    "node-forge": "^0.6.11",
+    "socket.io-client": "^2.2.0"
   },
   "devDependencies": {
     "chai": "~1.7.2",
