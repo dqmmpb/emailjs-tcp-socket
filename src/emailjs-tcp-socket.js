@@ -39,7 +39,7 @@
         // global browser import
         navigator.TCPSocket = factory(navigator, root['emailjs-tcp-socket-tls'], null, null, require('socket.io-client'));
     }
-})(this, function(root, TLS, net, tls) {
+})(this, function(root, TLS, net, tls, io) {
     'use strict';
 
     // Constants used for tls-worker
