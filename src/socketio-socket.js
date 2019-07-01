@@ -1,5 +1,6 @@
 import { pathOr, propOr } from 'ramda'
 import createTls from './tls-utils'
+import io from 'socket.io-client'
 import {
   EVENT_INBOUND, EVENT_OUTBOUND,
   createMessage

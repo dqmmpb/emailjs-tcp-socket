@@ -6,13 +6,13 @@ class DummySocket {
   }
 }
 
-if (typeof process !== 'undefined') {
+if (typeof process !== 'undefined' && !process.browser) {
   TCPSocket = require('./node-socket')
 } else if (typeof chrome !== 'undefined' && (chrome.socket || chrome.sockets)) {
   TCPSocket = require('./chrome-socket')
 } else if (typeof Windows === 'object' && Windows && Windows.Networking && Windows.Networking.Sockets && Windows.Networking.Sockets.StreamSocket) {
   TCPSocket = require('./windows-socket')
-} else if (typeof window === 'object' && typeof io === 'function') {
+} else if (typeof window === 'object') {
   TCPSocket = require('./socketio-socket')
 } else {
   TCPSocket = DummySocket
