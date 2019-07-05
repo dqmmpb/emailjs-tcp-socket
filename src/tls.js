@@ -165,5 +165,24 @@ export default class TlsClient {
   }
 }
 
-const a2s = arr => String.fromCharCode.apply(null, new Uint8Array(arr))
+// const a2s = arr => String.fromCharCode.apply(null, new Uint8Array(arr))
+/**
+ * When array is large(>=100KB), String.fromCharCode throw `Uncaught RangeError: Maximum call stack size exceeded`
+ * @param arr
+ * @returns {string}
+ */
+const a2s = arr => {
+  const array = new Uint8Array(arr)
+  const chunk = 8 * 1024
+
+  let res = ''
+  let i = 0
+  while (i < array.length / chunk) {
+    res += String.fromCharCode.apply(null, array.slice(i * chunk, (i + 1) * chunk))
+    i++
+  }
+  res += String.fromCharCode.apply(null, array.slice(i * chunk))
+
+  return res
+}
 const s2a = str => new Uint8Array(str.split('').map(char => char.charCodeAt(0))).buffer
