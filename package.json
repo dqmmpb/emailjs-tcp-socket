@@ -44,7 +44,7 @@
     "npmlog": "^2.0.0",
     "requirejs": "~2.1.10",
     "sinon": "1.7.3",
-    "socket.io": "^1.0.6",
+    "socket.io": "^2.2.0",
     "starttls": "https://github.com/felixhammerl/starttls/tarball/master",
     "underscore": "^1.6.0"
   }
