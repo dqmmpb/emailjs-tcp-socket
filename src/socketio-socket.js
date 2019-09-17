@@ -60,7 +60,7 @@ export default class TCPSocket {
 
       this._socket.on('error', message => {
         this._emit('error', new Error(message))
-        // this.close()
+        this.close()
       })
 
       this._socket.on('close', () => this.close())
