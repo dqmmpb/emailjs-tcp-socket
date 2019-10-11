@@ -14,13 +14,14 @@ export default class TCPSocket {
     this.bufferedAmount = 0
     this.readyState = 'connecting'
     this.binaryType = propOr('arraybuffer', 'binaryType')(options)
+    this.servername = propOr(host, 'servername')(options)
 
     if (this.binaryType !== 'arraybuffer') {
       throw new Error('Only arraybuffers are supported!')
     }
 
     this._socket = this.ssl
-      ? tls.connect(this.port, this.host, { }, () => this._emit('open'))
+      ? tls.connect(this.port, this.host, { servername: this.servername }, () => this._emit('open'))
       : net.connect(this.port, this.host, () => this._emit('open'))
 
     // add all event listeners to the new socket
