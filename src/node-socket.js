@@ -24,6 +24,8 @@ export default class TCPSocket {
       ? tls.connect(this.port, this.host, { servername: this.servername }, () => this._emit('open'))
       : net.connect(this.port, this.host, () => this._emit('open'))
 
+    this._socket.setKeepAlive(true)
+
     // add all event listeners to the new socket
     this._attachListeners()
   }
